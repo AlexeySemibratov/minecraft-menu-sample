@@ -43,8 +43,10 @@ public class MainMenuController : ViewController<MainMenuView>
         _screenNavigator.Exit();
     }
 
-    private void ShowRandomSplash()
+    private async void ShowRandomSplash()
     {
+        await _splashTextRepository.LoadSplashes();
+
         IEnumerable<string> splashes = _splashTextRepository.GetSplashes();
         var index = new Random().Next(0, splashes.Count());
         string randomSplash = splashes.ElementAt(index);
