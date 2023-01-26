@@ -6,11 +6,15 @@ public class MainMenuController : ViewController<MainMenuView>
 {
     private SplashTextRepository _splashTextRepository;
     private ScreenNavigator _screenNavigator;
+    private PanoramaCamera _panoramaCamera;
 
-    public MainMenuController(SplashTextRepository splashTextRepository, ScreenNavigator screenNavigator)
+    public MainMenuController(SplashTextRepository splashTextRepository, 
+        ScreenNavigator screenNavigator,
+        PanoramaCamera panoramaCamera)
     {
         _splashTextRepository = splashTextRepository;
         _screenNavigator = screenNavigator;
+        _panoramaCamera = panoramaCamera;
     }
 
     protected override void OnViewAttached()
@@ -18,6 +22,7 @@ public class MainMenuController : ViewController<MainMenuView>
         base.OnViewAttached();
 
         ShowRandomSplash();
+        StartPanorama();
     }
 
     public void OnSettingsClicked()
@@ -37,5 +42,15 @@ public class MainMenuController : ViewController<MainMenuView>
         string randomSplash = splashes.ElementAt(index);
 
         _view.ShowSplashText(randomSplash);
+    }
+
+    private void StartPanorama()
+    {
+        _panoramaCamera.StartRotation();
+    }
+
+    private void StopPanorama()
+    {
+        _panoramaCamera.StopRotation();
     }
 }
