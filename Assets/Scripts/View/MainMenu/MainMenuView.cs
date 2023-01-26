@@ -2,10 +2,11 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
 
-public class MainMenuView : MonoBehaviour
+public class MainMenuView : View<MainMenuView, MainMenuController>, IView
 {
+    protected override MainMenuView view => this;
+
     [SerializeField]
     private TextMeshProUGUI _splashText;
 
@@ -21,18 +22,12 @@ public class MainMenuView : MonoBehaviour
     [SerializeField]
     private Button _quitButton;
 
-    [Inject]
-    private MainMenuController _controller;
-
     private void Awake()
     {
+        base.Awake();
+
         SetupButtons();
         AnimateSplashText();
-    }
-
-    private void OnEnable()
-    {
-        _controller.AttachView(this);
     }
 
     public void ShowSplashText(string text)

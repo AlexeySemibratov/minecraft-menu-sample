@@ -8,7 +8,8 @@ public class MainMenuController : ViewController<MainMenuView>
     private ScreenNavigator _screenNavigator;
     private PanoramaCamera _panoramaCamera;
 
-    public MainMenuController(SplashTextRepository splashTextRepository, 
+    public MainMenuController(
+        SplashTextRepository splashTextRepository, 
         ScreenNavigator screenNavigator,
         PanoramaCamera panoramaCamera)
     {
@@ -17,12 +18,19 @@ public class MainMenuController : ViewController<MainMenuView>
         _panoramaCamera = panoramaCamera;
     }
 
-    protected override void OnViewAttached()
+    public override void OnViewShow()
     {
-        base.OnViewAttached();
+        base.OnViewShow();
 
         ShowRandomSplash();
         StartPanorama();
+    }
+
+    public override void OnViewHide()
+    {
+        base.OnViewHide();
+
+        StopPanorama();
     }
 
     public void OnSettingsClicked()

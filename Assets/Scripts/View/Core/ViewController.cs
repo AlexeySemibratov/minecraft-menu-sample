@@ -1,4 +1,5 @@
 public abstract class ViewController<V>
+    where V : IView
 {
     protected V _view;
 
@@ -8,8 +9,23 @@ public abstract class ViewController<V>
         OnViewAttached();
     }
 
-    protected virtual void OnViewAttached()
+    public virtual void OnViewAttached()
     {
 
+    }
+
+    public virtual void OnViewShow()
+    {
+
+    }
+
+    public virtual void OnViewHide()
+    {
+
+    }
+
+    public virtual void OnViewDestroyed()
+    {
+        
     }
 }

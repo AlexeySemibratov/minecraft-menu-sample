@@ -12,7 +12,7 @@ public class SplashScreenController : ViewController<SplashScreenView>
         _gameLoadingRepository = gameLoadingRepository;
     }
 
-    protected override void OnViewAttached()
+    public override void OnViewAttached()
     {
         base.OnViewAttached();
 

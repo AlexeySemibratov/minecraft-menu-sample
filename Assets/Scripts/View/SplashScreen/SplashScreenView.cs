@@ -1,9 +1,10 @@
 using TMPro;
 using UnityEngine;
-using Zenject;
 
-public class SplashScreenView : MonoBehaviour
+public class SplashScreenView : View<SplashScreenView, SplashScreenController>, IView
 {
+    protected override SplashScreenView view => this;
+
     private const string ProgressText = "{0} %";
     private const int MaxPercent = 100;
 
@@ -12,14 +13,6 @@ public class SplashScreenView : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI _progressText;
-
-    [Inject]
-    private SplashScreenController _controller;
-
-    private void OnEnable()
-    {
-        _controller.AttachView(this);
-    }
 
     public void ShowProgress(float value)
     {
